@@ -1,0 +1,59 @@
+grammar com.netfective.editor.dsl.Workflow with org.eclipse.xtext.common.Terminals
+
+generate workflow "http://www.netfective.com/editor/dsl/Workflow"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://netfective.com/wfl" as wfl
+
+Model:
+	WFBsp=Cartridges
+	WFProperty=Properties
+	WFResource=Resources;
+	
+Cartridges:
+	name='Cartridges' '{' 
+		cartdriges+=Cartridge*
+	 '}'
+;
+
+Properties:
+	name='Properties' '{'
+		properties+=PropertyCartridge*
+	'}'
+;
+
+Resources:
+	name='Resources' '{'
+		resources+=Resource+
+	'}'
+;
+
+Resource:
+	name=(QualifiedName) '{'
+		properties+=Property
+	'}'
+;
+
+PropertyCartridge:
+	cartridge=[Cartridge|QualifiedName] '{'
+		properties+=Property*
+	'}'
+;
+
+Property: name=ID '=' (STRING | INT | BOOLEAN);
+
+BOOLEAN returns ecore::EBoolean :
+	'true' | 'false'
+;
+
+Cartridge:
+	cartridge=[wfl::CartridgeWFL|QualifiedName] ':' activated=Activated 
+;
+
+QualifiedName:
+	ID ('.' ID)*
+;
+
+enum Activated:
+	TRUE='true' | FALSE='false'
+;

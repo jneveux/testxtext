@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated workflow -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="com.netfective.workflow.Wfl.presentation.WflModelWizardID"
+            name="%_UI_WflModelWizard_label"
+            class="com.netfective.workflow.Wfl.presentation.WflModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/WflModelFile.gif">
+         <description>%_UI_WflModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated workflow -->
+      <editor
+            id="com.netfective.workflow.Wfl.presentation.WflEditorID"
+            name="%_UI_WflEditor_label"
+            icon="icons/full/obj16/WflModelFile.gif"
+            extensions="wfl"
+            class="com.netfective.workflow.Wfl.presentation.WflEditor"
+            contributorClass="com.netfective.workflow.Wfl.presentation.WflActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
